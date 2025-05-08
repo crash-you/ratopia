@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ratopia - Play Crazy Office: Slap and Smash! and more fun casual games for free online">
+    <meta name="keywords" content="casual games, online games, Crazy Office, Slap and Smash, Ratopia">
+    <title>Crazy Office: Slap and Smash! - Ratopia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        .dark {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        .dark .bg-white {
+            background-color: #2a2a2a;
+        }
+        .dark .text-gray-700 {
+            color: #e0e0e0;
+        }
+        .dark .bg-gray-100 {
+            background-color: #333333;
+        }
+        .dark .border-gray-200 {
+            border-color: #444444;
+        }
+        .dark .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+        .action-btn {
+            @apply flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200;
+            @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+        }
+        .dark .action-btn {
+            @apply bg-gray-700 text-gray-200 hover:bg-gray-600;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .dark .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left-color: #3498db;
+        }
+        #game-container {
+            width: 100%;
+            height: calc(100vh - 180px);
+            min-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-200">
+    <!-- Vertical three-section layout -->
+    <div class="flex flex-col min-h-screen">
+        <!-- Top navigation bar -->
+        <header class="bg-white shadow-md dark:bg-gray-800">
+            <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+                <a href="/" class="flex items-center">
+                    <span class="text-2xl font-bold text-indigo-600">Ratopia</span>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Central game area -->
+        <main class="flex-grow container mx-auto px-4 py-6">
+            <!-- Game title area -->
+            <div class="mb-6 text-center">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Crazy Office: Slap and Smash!</h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    Release your work stress in this crazy office! Slap and smash everything!
+                </p>
+            </div>
+
+            <!-- Game container -->
+            <div class="w-full mx-auto">
+                <div id="game-container" class="relative bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+                    <!-- Loading indicator -->
+                    <div id="game-loader" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-10 dark:bg-gray-800 dark:bg-opacity-80">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    
+                    <!-- Game iframe -->
+                    <iframe id="game-frame" 
+                            class="w-full h-full" 
+                            src="https://www.crazygames.com/embed/crazy-office-slap-and-smash"
+                            frameborder="0"
+                            loading="lazy"
+                            allow="gamepad *;">
+                    </iframe>
+                    
+                    <!-- Fullscreen button -->
+                    <button id="fullscreen-btn" class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md dark:bg-gray-700">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+
+                <!-- Quick action bar -->
+                <div class="game-actions flex flex-wrap justify-center space-x-4 mt-4">
+                    <button id="btn-favorite" class="action-btn">
+                        <i class="far fa-heart mr-2"></i>
+                        <span>Favorite</span>
+                    </button>
+                    
+                    <button id="btn-share" class="action-btn">
+                        <i class="fas fa-share-alt mr-2"></i>
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game information -->
+            <div class="mt-8 w-full md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto">
+                <!-- Game introduction card -->
+                <div class="bg-white rounded-lg shadow-md p-6 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                    <h2 class="text-xl font-bold mb-4">Game Introduction</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        In "Crazy Office: Slap and Smash!", you can release your work stress! Slap faces, smash objects, and vent your frustrations in this virtual office. The game is easy to play with simple controls and fun gameplay, making it a perfect choice for casual relaxation.
+                    </p>
+                    <div class="mt-4">
+                        <h3 class="font-bold mb-2">How to Play:</h3>
+                        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300">
+                            <li>Use left mouse button to interact</li>
+                            <li>Drag items to designated areas</li>
+                            <li>Complete various crazy office tasks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer information bar -->
+        <footer class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-gray-400">&copy; 2023 Ratopia.top - All Rights Reserved</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Theme toggle module
+        const themeToggle = {
+            init: () => {
+                const currentTheme = localStorage.getItem('theme') || 'light';
+                document.documentElement.classList.toggle('dark', currentTheme === 'dark');
+                document.body.classList.toggle('dark', currentTheme === 'dark');
+                
+                // Listen to theme toggle button
+                document.getElementById('theme-toggle').addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    document.body.classList.toggle('dark');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
+        };
+
+        // Local storage module
+        const storage = {
+            // Game favorites
+            saveGame: (gameId) => {
+                const favorites = storage.getFavorites();
+                if (!favorites.includes(gameId)) {
+                    favorites.push(gameId);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                    return true;
+                }
+                return false;
+            },
+            removeGame: (gameId) => {
+                const favorites = storage.getFavorites();
+                const index = favorites.indexOf(gameId);
+                if (index !== -1) {
+                    favorites.splice(index, 1);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                    return true;
+                }
+                return false;
+            },
+            getFavorites: () => {
+                const favorites = localStorage.getItem('favorites');
+                return favorites ? JSON.parse(favorites) : [];
+            },
+            
+            // Game history
+            addToHistory: (gameId) => {
+                const history = storage.getHistory();
+                // Remove duplicates
+                const index = history.indexOf(gameId);
+                if (index !== -1) {
+                    history.splice(index, 1);
+                }
+                // Add to the beginning of history
+                history.unshift(gameId);
+                // Keep history records no more than 10
+                if (history.length > 10) {
+                    history.pop();
+                }
+                localStorage.setItem('history', JSON.stringify(history));
+            },
+            getHistory: () => {
+                const history = localStorage.getItem('history');
+                return history ? JSON.parse(history) : [];
+            }
+        };
+
+        // Game operations module
+        const gameOperations = {
+            init: () => {
+                const gameId = 'crazy-office-slap-and-smash';
+                const favoriteBtn = document.getElementById('btn-favorite');
+                const shareBtn = document.getElementById('btn-share');
+                const fullscreenBtn = document.getElementById('fullscreen-btn');
+                const gameFrame = document.getElementById('game-frame');
+                const gameLoader = document.getElementById('game-loader');
+                
+                // Check if already favorited
+                const favorites = storage.getFavorites();
+                if (favorites.includes(gameId)) {
+                    favoriteBtn.innerHTML = '<i class="fas fa-heart mr-2"></i><span>Favorited</span>';
+                    favoriteBtn.classList.add('bg-indigo-100', 'text-indigo-700');
+                    favoriteBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                }
+                
+                // Favorite button
+                favoriteBtn.addEventListener('click', () => {
+                    const favorites = storage.getFavorites();
+                    if (favorites.includes(gameId)) {
+                        storage.removeGame(gameId);
+                        favoriteBtn.innerHTML = '<i class="far fa-heart mr-2"></i><span>Favorite</span>';
+                        favoriteBtn.classList.remove('bg-indigo-100', 'text-indigo-700');
+                        favoriteBtn.classList.add('bg-gray-200', 'text-gray-700');
+                    } else {
+                        storage.saveGame(gameId);
+                        favoriteBtn.innerHTML = '<i class="fas fa-heart mr-2"></i><span>Favorited</span>';
+                        favoriteBtn.classList.add('bg-indigo-100', 'text-indigo-700');
+                        favoriteBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                    }
+                });
+                
+                // Share button
+                shareBtn.addEventListener('click', () => {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Crazy Office: Slap and Smash! - Ratopia',
+                            text: 'Play Crazy Office: Slap and Smash! on Ratopia and release your stress!',
+                            url: window.location.href
+                        }).catch(console.error);
+                    } else {
+                        // Copy link to clipboard
+                        const tempInput = document.createElement('input');
+                        document.body.appendChild(tempInput);
+                        tempInput.value = window.location.href;
+                        tempInput.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tempInput);
+                        
+                        // Show notification
+                        alert('Link copied to clipboard');
+                    }
+                });
+                
+                // Fullscreen button
+                fullscreenBtn.addEventListener('click', () => {
+                    const container = document.getElementById('game-container');
+                    if (!document.fullscreenElement) {
+                        if (container.requestFullscreen) {
+                            container.requestFullscreen();
+                        } else if (container.mozRequestFullScreen) {
+                            container.mozRequestFullScreen();
+                        } else if (container.webkitRequestFullscreen) {
+                            container.webkitRequestFullscreen();
+                        } else if (container.msRequestFullscreen) {
+                            container.msRequestFullscreen();
+                        }
+                        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                    } else {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                    }
+                });
+                
+                // Listen to fullscreen change
+                document.addEventListener('fullscreenchange', () => {
+                    if (!document.fullscreenElement) {
+                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                    }
+                });
+                
+                // Record game history
+                storage.addToHistory(gameId);
+                
+                // Game loaded
+                gameFrame.onload = () => {
+                    gameLoader.classList.add('hidden');
+                };
+            }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            themeToggle.init();
+            gameOperations.init();
+        });
+    </script>
+</body>
+</html> 
